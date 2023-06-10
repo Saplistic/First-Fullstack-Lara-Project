@@ -18,7 +18,7 @@
                     @foreach ($posts as $post)
                         <h2>{{ $post->title }}</h2>
                         <p>{{ $post->content }}</p>
-                        <small>Gepost door {{ $post->user->name }} op {{ $post->created_at->format('d/m/Y \o\m H:i') }}</small>
+                        <small>Gepost door <a href="{{ route('profile', $post->user->name) }}">{{ $post->user->name }}</a> op {{ $post->created_at->format('d/m/Y \o\m H:i') }}</small>
                         @if($post->user_id == Auth::user()?->id)
                             <a href="{{ route('posts.edit', $post->id) }}" style="float: right">Edit</a>
                         @endauth

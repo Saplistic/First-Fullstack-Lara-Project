@@ -26,6 +26,8 @@ Route::resource('/posts', PostController::class);
 
 Route::get('like/{postid}', [LikeController::class, 'like'])->name('like');
 
+Route::get('users/{username}', [UserController::class, 'profile'])->name('profile');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
