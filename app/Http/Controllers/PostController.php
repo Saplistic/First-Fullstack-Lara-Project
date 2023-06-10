@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -11,7 +12,7 @@ class PostController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index']]);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -58,7 +59,9 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        return view('posts.show', compact('post'));
     }
 
     /**
