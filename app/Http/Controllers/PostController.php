@@ -105,6 +105,14 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if (!Auth::user()->is_admin) {
+            abort(403, 'You dont have the rights');
+        }
+
+        $post = Post::findOrFail($id);
+        Like::where('post_id', '=', $post->id)->delete();
+        $post->delete();
+
+        return redirect('posts')->with('status', 'Post deleted');
     }
 }
