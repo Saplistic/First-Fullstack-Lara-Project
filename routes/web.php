@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,8 @@ Route::get('/welcome', function () {
 // Route::get('/posts', [PostController::class, 'index'])->name('posts');
 
 Route::resource('/posts', PostController::class);
+
+Route::get('like/{postid}', [LikeController::class, 'like'])->name('like');
 
 Auth::routes();
 
