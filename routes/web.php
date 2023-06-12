@@ -26,7 +26,8 @@ Route::resource('/posts', PostController::class);
 
 Route::get('like/{postid}', [LikeController::class, 'like'])->name('like');
 
-Route::get('users/{username}', [UserController::class, 'profile'])->name('profile');
+Route::get('/users/{username}', [UserController::class, 'profile'])->name('profile');
+Route::get('/users/{id}/grant-admin-permissions', [UserController::class, 'grantAdmin'])->name('grantAdminPermissions');
 
 Auth::routes();
 
