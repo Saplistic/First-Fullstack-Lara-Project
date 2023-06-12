@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->integer('post_id');
             $table->integer('user_id');
-            $table->boolean('isadmin')->default('false');
             $table->timestamps();
         });
     }
