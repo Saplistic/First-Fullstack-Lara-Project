@@ -9,12 +9,12 @@
                     @if (Auth::user()?->is_admin && !$user->is_admin)
                         <a type="submit" href="{{ route('grantAdminPermissions', $user->id) }}" style="float: right" class="link-warning link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Promote to admin</a>
                     @endif
-                    <h3 style="display: inline-block">
+                    <h2 style="display: inline-block">
                         {{ $user->name }}'s
                         @if ($user->is_admin)
                             <i class="bi bi-person-fill-gear"></i>
                         @endif profiel
-                    </h3>
+                    </h2>
                 </div>
 
                 <div class="card-body">
@@ -25,7 +25,11 @@
                         </div>
                     @endif
 
-                    <div class="" style="max-width: 500px">
+                    <div>
+                        <p style="display: inline-block; flex-grow: 1;">{{ $user->biography }}</p>
+                    </div>
+                    
+                    <div style="max-width: 500px">
                         <h4>Gemaakte posts ({{ ($user->posts)->count() }})</h3>
                         <ul class="list-group list-group-flush">
                             @foreach ($user->posts as $post)
@@ -37,10 +41,9 @@
                         </ul>
                     </div>
 
-
                     <hr>
 
-                    <div class="" style="max-width: 300px">
+                    <div style="max-width: 300px">
 
                         <h4>Gelikte posts ({{ ($user->likes)->count() }})</h3>
 
