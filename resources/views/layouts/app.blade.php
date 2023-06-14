@@ -39,6 +39,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav nav-pills">
                         <li class="nav-item"><a href="{{ route('posts.index') }}" class="nav-link">Posts</a></li>
+                        <li class="nav-item"><a href="{{ route('FAQs') }}" class="nav-link">FAQs</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
