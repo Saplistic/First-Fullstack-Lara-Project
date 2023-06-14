@@ -5,13 +5,67 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['profile']]);
+    }
+
     public function profile($name)
     {
         $user = User::where('name', '=', $name)->firstOrFail();
         return view('users.profile', compact('user'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit()
+    {
+        $user = auth()->user();
+        return view('users.edit', compact('user'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:5',
+            'birthdate' => 'required|date|before_or_equal:' . now()->subYears(13)->format('Y-m-d'),
+            'biography' => 'nullable',
+            'profile_image' => 'nullable|mimes:png,jpg,jpeg,gif|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+
+        // dd($request->profile_image);
+        if (isset($newImageName)) {
+            $newImageName = time() . '-' . $request->name . '' . $request->profile_image->extension();
+            $request->profile_image->move(public_path('images'), $newImageName);
+        } else {
+            //assign the path to te same as the previous value if no new file has been uploaded
+            $newImageName = $user->profile_image_path;
+        }
+
+        $user->update([
+            'name' => $request->input('name'),
+            'birthdate' => $request->input('birthdate'),
+            'biography' => $request->input('biography'),
+            'profile_image_path' => $newImageName
+        ]);
+
+        return redirect()->route('profile', $user->name)->with('status', 'Profile succesfully updated');
     }
 
     public function grantAdmin($id)
