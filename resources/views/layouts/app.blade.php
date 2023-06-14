@@ -37,13 +37,8 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-                        <a href="{{ route('posts.index') }}">Posts</a>
-                    </ul>
-                    <ul class="navbar-nav me-auto">
-                        @auth
-                            <a href="{{ route('posts.create') }}">Create post</a>
-                        @endauth
+                    <ul class="nav nav-pills">
+                        <li class="nav-item"><a href="{{ route('posts.index') }}" class="nav-link">Posts</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -74,9 +69,11 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('profile', Auth::user()->name) }}">View profile</a>
                                     <a class="dropdown-item" href="{{ route('user.edit') }}">Edit profile</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ route('posts.create') }}">Create post</a>
+                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
