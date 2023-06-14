@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\FAQCategory;
 use App\Http\Controllers\FAQCategoryController;
+use App\Http\Controllers\FAQQuestionController;
 use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -38,5 +38,14 @@ Route::get('like/{postid}', [LikeController::class, 'like'])->name('like');
 
 // FAQ routes
 Route::get('FAQ',   [FAQCategoryController::class, 'index'])->name('FAQs');
+Route::post('FAQ/category/store',   [FAQCategoryController::class, 'store'])->name('FAQs.category.store');
+Route::put('FAQ/category/update/{id}',   [FAQCategoryController::class, 'update'])->name('FAQs.category.update');
+Route::get('FAQ/category/destroy/{id}',   [FAQCategoryController::class, 'destroy'])->name('FAQs.category.destroy');
+
+Route::get('FAQ/create/{category}', [FAQQuestionController::class, 'create'])->name('FAQ.create');
+Route::post('FAQ/store/{category}', [FAQQuestionController::class, 'store'])->name('FAQ.store');
+Route::get('FAQ/edit/{id}', [FAQQuestionController::class, 'edit'])->name('FAQ.edit');
+Route::put('FAQ/update/{id}', [FAQQuestionController::class, 'update'])->name('FAQ.update');
+Route::get('FAQ/destroy/{id}', [FAQQuestionController::class, 'destroy'])->name('FAQ.destroy');
 
 Auth::routes();

@@ -13,20 +13,12 @@ class FAQCategoryController extends Controller
      */
     public function index()
     {
+        $categories = FAQCategory::with('questions')->get();
         // $categories = FAQCategory::orderBy('id', 'desc')->get();
-        // $categories = FAQCategory::with('questions')->get();
-        $categories = FAQCategory::all();
+        // $categories = FAQCategory::all();
         // dd(FAQCategory::all);
 
         return view('FAQ.index', compact('categories'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -34,38 +26,39 @@ class FAQCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validated = $request->validate([
+            'name' => 'required|min:3|unique:f_a_q_categories,name'
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        $category = new FAQCategory;
+        $category->name = $validated['name'];
+        $category->save();
+        return redirect()->route('FAQs')->with('status', 'Category succesfully created');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|min:3|unique:f_a_q_categories,name'
+        ]);
+        $category = FAQCategory::findOrFail($id);
+        $category->name = $validated['name'];
+        $category->save();
+        return redirect()->route('FAQs')->with('status', 'Category succesfully changed');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $category = FAQCategory::findOrFail($id);
+        $category->delete();
+
+        return redirect('FAQ')->with('status', 'Category deleted');
     }
 }
