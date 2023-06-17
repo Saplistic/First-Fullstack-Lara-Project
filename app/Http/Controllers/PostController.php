@@ -12,7 +12,7 @@ class PostController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('admin', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -105,10 +105,6 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        if (!Auth::user()->is_admin) {
-            abort(403, 'You dont have the rights');
-        }
-
         $post = Post::findOrFail($id);
         Like::where('post_id', '=', $post->id)->delete();
         $post->delete();
