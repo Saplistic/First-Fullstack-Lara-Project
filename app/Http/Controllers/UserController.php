@@ -48,10 +48,8 @@ class UserController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-
-        // dd($request->profile_image);
-        if (isset($newImageName)) {
-            $newImageName = time() . '-' . $request->name . '' . $request->profile_image->extension();
+        if ($request->hasFile('profile_image')) {
+            $newImageName = time() . '-' . $request->name . '.' . $request->profile_image->extension();
             $request->profile_image->move(public_path('images'), $newImageName);
         } else {
             //assign the path to te same as the previous value if no new file has been uploaded
