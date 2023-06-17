@@ -20,6 +20,6 @@ class IsAdmin
             return $next($request);
         }
 
-        return redirect()->route('FAQs');
+        return abort(403);
     }
 }
