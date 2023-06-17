@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class FAQCategoryController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('admin', ['except' => ['index']]);
+    }
+
     /**
      * Display a listing of the resource.
      */

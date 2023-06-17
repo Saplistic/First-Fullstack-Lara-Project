@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 class FAQQuestionController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -75,6 +79,6 @@ class FAQQuestionController extends Controller
         $category->delete();
         // FAQQuestion::where('id', '=', $category->id)->delete();
 
-        return redirect('FAQ')->with('status', 'Question deleted');
+        return redirect()->route('FAQs')->with('status', 'FAQ deleted');
     }
 }
