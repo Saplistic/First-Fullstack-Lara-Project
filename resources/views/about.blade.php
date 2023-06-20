@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-    <div class="container max" style="max-width: 1400px; background: url()">
+    <div class="container max" style="max-width: 1400px">
         <div class="container-fluid">
             <div class="row justify-content-between">
                 <div class="col-lg-5 p-4 bg-white rounded-4" style="--bs-bg-opacity: .8;">
