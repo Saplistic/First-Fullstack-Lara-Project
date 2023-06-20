@@ -20,7 +20,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <style>
         main {
-            min-height: 75vh;
+            min-height: 80vh;
         }
         a {
             text-decoration: none
