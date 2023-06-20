@@ -39,7 +39,7 @@
                             {{ $post->likes()->count() }}
 
                             @if ($post->likes->contains('user_id', auth()->id()))
-                                <a href=""><i class="bi bi-hand-thumbs-up-fill"></i></a>
+                                <a href="{{ route('like.destroy', $post->id) }}"><i class="bi bi-hand-thumbs-up-fill"></i></a>
                             @else
                                 <a href="{{ route('like', $post->id) }}"><i class="bi bi-hand-thumbs-up"></i></a>
                             @endif

@@ -35,6 +35,7 @@ Route::resource('/posts', PostController::class);
 
 // like
 Route::get('like/{postid}', [LikeController::class, 'like'])->name('like');
+Route::get('like/destroy/{postid}', [LikeController::class, 'destroy'])->name('like.destroy');
 
 // FAQ
 Route::get('FAQ',   [FAQCategoryController::class, 'index'])->name('FAQs');

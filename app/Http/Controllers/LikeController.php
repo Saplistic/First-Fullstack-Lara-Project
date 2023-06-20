@@ -28,6 +28,20 @@ class LikeController extends Controller
         $like->post_id = $postId;
         $like->save();
 
-        return redirect()->route('posts.index')->with('status', 'Post liked');
+        return redirect()->back()->with('status', 'Post liked');
+    }
+
+    public function destroy($postId)
+    {
+        $like = Like::where('post_id', '=', $postId)
+            ->where('user_id', Auth::id())
+            ->first();
+
+
+        if (!$like) {
+            abort(404);
+        }
+        $like->delete();
+        return redirect()->back()->with('status', 'Like successfully removed');
     }
 }
