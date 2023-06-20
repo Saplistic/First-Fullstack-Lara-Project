@@ -18,6 +18,9 @@
                 <div class="col-lg-5 p-4 bg-white rounded-4" style="--bs-bg-opacity: .8;">
                     <h1>About</h1>
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt dolorem doloribus vero nulla sapiente unde corrupti magni officia esse. Quos, animi. Tempora odit autem odio sed, ut totam atque reiciendis sequi laboriosam enim obcaecati, aliquam molestias! Necessitatibus veritatis qui minus laboriosam, suscipit, nemo minima pariatur voluptatem enim sit autem quaerat tempore laborum facere deserunt eius tempora repellat iste aperiam corrupti? Debitis, impedit tempore cumque a iste ea aperiam asperiores cum perspiciatis?</p>
+                    <h3>GitHub repo</h3>
+                    <strong>Here you can find the link of my GitHub repository for my this project, where you can find the overview of my progress</strong>
+                    <a href="https://github.com/Saplistic/First-Fullstack-Lara-Project">https://github.com/Saplistic/First-Fullstack-Lara-Project</a>
                 </div>
                 
                 <div class="col-lg-5 p-4 bg-white rounded-4" style="--bs-bg-opacity: .8;">
