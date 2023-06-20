@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\FAQCategory;
+use App\Models\FAQQuestion;
 use Illuminate\Support\Facades\Auth;
 
 class FAQCategoryController extends Controller
@@ -47,6 +48,7 @@ class FAQCategoryController extends Controller
     public function destroy($id)
     {
         $category = FAQCategory::findOrFail($id);
+        FAQQuestion::where('category_id', '=', $category->id)->delete();
         $category->delete();
 
         return redirect('FAQ')->with('status', 'Category deleted');
