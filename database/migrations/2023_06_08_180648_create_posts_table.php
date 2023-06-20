@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
+            $table->string('cover_image_path')->nullable();
             $table->integer('user_id');
             $table->timestamps();
         });

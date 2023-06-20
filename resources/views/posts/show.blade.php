@@ -8,6 +8,9 @@
                 <div class="card-header">
                     <h3>{{ $post->title }}</h3>
                 </div>
+                @if ( ($post->cover_image_path != NULL))
+                    <div style="height: 100px; width: 100%; background: url({{ asset('images/post_covers/' . $post->cover_image_path) }}) center / cover"></div>
+                @endif
 
                 <div class="card-body">
 

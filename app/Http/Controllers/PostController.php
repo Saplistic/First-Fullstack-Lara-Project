@@ -40,12 +40,21 @@ class PostController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|min:3',
+            'cover_image' => 'nullable|mimes:png,jpg,jpeg,gif|max:2048',
             'content' => 'required|min:20'
         ]);
 
-        //bijniet geslaagde validatie komer we hier niet terug, gaat onieuw naar form
+        //bij niet geslaagde validatie komer we hier niet terug, gaat onieuw naar form
+
+        if ($request->hasFile('cover_image')) {
+            $newImageName = time() . '-' . $request->title . '.' . $request->cover_image->extension();
+            $request->cover_image->move(public_path('images/post_covers'), $newImageName);
+        }
 
         $post = new Post;
+        if (isset($newImageName)) {
+            $post->cover_image_path = $newImageName;
+        }
         $post->title = $validated['title'];
         $post->content = $validated['content'];
         $post->user_id = Auth::user()->id;
@@ -91,9 +100,19 @@ class PostController extends Controller
 
         $validated = $request->validate([
             'title' => 'required|min:3',
+            'cover_image' => 'nullable|mimes:png,jpg,jpeg,gif|max:2048',
             'content' => 'required|min:20'
         ]);
 
+        if ($request->hasFile('cover_image')) {
+            $newImageName = time() . '-' . $request->title . '.' . $request->cover_image->extension();
+            $request->cover_image->move(public_path('images/post_covers'), $newImageName);
+        }
+
+        if (isset($newImageName)) {
+
+            $post->cover_image_path = $newImageName;
+        }
         $post->title = $validated['title'];
         $post->content = $validated['content'];
         $post->save();

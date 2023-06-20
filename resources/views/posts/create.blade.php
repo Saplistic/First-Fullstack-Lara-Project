@@ -8,16 +8,29 @@
                 <div class="card-header">Create a new post</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('posts.store') }}">
+                    <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mb-3">
                             <label for="title" class="col-md-4 col-form-label text-md-end">Title</label>
 
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control @error('text') is-invalid @enderror" name="title" value="{{ old('title') }}" required autofocus>
+                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autofocus>
 
                                 @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="image-upload" class="col-md-4 col-form-label text-md-end">Cover</label>
+                            <div class="col-md-6">
+                                <input type="file" class="form-control @error('cover_image') is-invalid @enderror" id="cover_image" name="cover_image" accept="image/*" onchange="previewImage(event)">
+
+                                @error('cover_image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
