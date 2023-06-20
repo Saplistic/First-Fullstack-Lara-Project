@@ -39,7 +39,7 @@
                             <div class="row mb-3">
                                 <label for="image-upload" class="col-md-4 col-form-label text-md-end">Profielfoto wijzigen?</label>
                                 <div class="col-md-6">
-                                    <input type="file" class="form-control" id="image-upload" name="profile_image" accept="image/*" onchange="previewImage(event)">
+                                    <input type="file" class="form-control @error('profile_image') is-invalid @enderror" id="image-upload" name="profile_image" accept="image/*" onchange="previewImage(event)">
 
                                     @error('profile_image')
                                         <span class="invalid-feedback" role="alert">
