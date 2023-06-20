@@ -6,6 +6,7 @@ use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,5 +54,9 @@ Route::get('FAQ/destroy/{id}', [FAQQuestionController::class, 'destroy'])->name(
 Route::get('/about', function () {
     return view('about');
 })->name('about');
+
+// contact
+Route::get('/contact', [ContactController::class, 'show'])->name('contact');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 Auth::routes();
