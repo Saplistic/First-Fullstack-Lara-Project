@@ -13,17 +13,11 @@ class FAQQuestionController extends Controller
     {
         $this->middleware('admin');
     }
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create($category_id)
     {
         return view('FAQ.create', compact('category_id'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
 
     public function store(Request $request, $category_id)
     {
@@ -42,18 +36,12 @@ class FAQQuestionController extends Controller
         return redirect()->route('FAQs')->with('status', 'FAQ succesfully created');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         $question = FAQQuestion::findOrFail($id);
         return view('FAQ.edit', compact('question'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id)
     {
         $question = FAQQuestion::findOrFail($id);
@@ -70,14 +58,10 @@ class FAQQuestionController extends Controller
         return redirect()->route('FAQs')->with('status', 'FAQ succesfully updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         $category = FAQQuestion::findOrFail($id);
         $category->delete();
-        // FAQQuestion::where('id', '=', $category->id)->delete();
 
         return redirect()->route('FAQs')->with('status', 'FAQ deleted');
     }

@@ -21,18 +21,12 @@ class UserController extends Controller
         return view('users.profile', compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit()
     {
         $user = auth()->user();
         return view('users.edit', compact('user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request)
     {
         $user = Auth::user();
@@ -52,7 +46,7 @@ class UserController extends Controller
             $newImageName = time() . '-' . $request->name . '.' . $request->profile_image->extension();
             $request->profile_image->move(public_path('images'), $newImageName);
         } else {
-            //assign the path to te same as the previous value if no new file has been uploaded
+            //assign the path to the previous value if no new file has been uploaded
             $newImageName = $user->profile_image_path;
         }
 

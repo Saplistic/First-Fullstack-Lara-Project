@@ -15,27 +15,18 @@ class PostController extends Controller
         $this->middleware('admin', ['except' => ['index', 'show']]);
     }
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $posts = Post::orderBy('created_at', 'desc')->get();
         return view('posts.index', compact('posts'));
-        //
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('posts.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -43,8 +34,6 @@ class PostController extends Controller
             'cover_image' => 'nullable|mimes:png,jpg,jpeg,gif|max:2048',
             'content' => 'required|min:20'
         ]);
-
-        //bij niet geslaagde validatie komer we hier niet terug, gaat onieuw naar form
 
         if ($request->hasFile('cover_image')) {
             $newImageName = time() . '-' . $request->title . '.' . $request->cover_image->extension();
@@ -63,9 +52,6 @@ class PostController extends Controller
         return redirect()->route('posts.index')->with('status', 'Post succesfully created');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         $post = Post::findOrFail($id);
@@ -73,9 +59,6 @@ class PostController extends Controller
         return view('posts.show', compact('post'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
 
@@ -87,9 +70,7 @@ class PostController extends Controller
 
         return view('posts.edit', compact('post'));
     }
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, string $id)
     {
         $post = Post::findOrFail($id);
@@ -119,9 +100,6 @@ class PostController extends Controller
         return redirect()->route('posts.show', $post->id)->with('status', 'Post successfully edited');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $post = Post::findOrFail($id);
