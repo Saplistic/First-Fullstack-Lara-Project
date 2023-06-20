@@ -17,7 +17,7 @@
                     <small>
                         Gepost door 
                         <a href="{{ route('profile', $post->user->name) }}">
-                            <img src="@if ($post->user->profile_image_path != NULL && file_exists(public_path('images/' . $post->user->profile_image_path))) {{ asset('images/' . $post->user->profile_image_path) }} @else {{ asset('images/user.png') }} @endif" width="20" height="20" class="rounded-circle">
+                            <img src="@if ($post->user->profile_image_path != NULL && file_exists(public_path('images/users/' . $post->user->profile_image_path))) {{ asset('images/users/' . $post->user->profile_image_path) }} @else {{ asset('images/user.png') }} @endif" width="20" height="20" class="rounded-circle">
                             {{ $post->user->name }}
                             @if ($post->user->is_admin)
                                 <i class="bi bi-person-fill-gear"></i>

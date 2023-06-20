@@ -44,7 +44,7 @@ class UserController extends Controller
 
         if ($request->hasFile('profile_image')) {
             $newImageName = time() . '-' . $request->name . '.' . $request->profile_image->extension();
-            $request->profile_image->move(public_path('images'), $newImageName);
+            $request->profile_image->move(public_path('images/users'), $newImageName);
         } else {
             //assign the path to the previous value if no new file has been uploaded
             $newImageName = $user->profile_image_path;

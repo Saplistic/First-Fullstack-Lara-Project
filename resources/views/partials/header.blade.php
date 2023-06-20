@@ -34,7 +34,7 @@
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <img src="@if (Auth::user()->profile_image_path != NULL && file_exists(public_path('images/' . Auth::user()->profile_image_path))) {{ asset('images/' . Auth::user()->profile_image_path) }} @else {{ asset('images/user.png') }} @endif" alt="mdo" width="32" height="32" class="rounded-circle">
+                            <img src="@if (Auth::user()->profile_image_path != NULL && file_exists(public_path('images/users/' . Auth::user()->profile_image_path))) {{ asset('images/users/' . Auth::user()->profile_image_path) }} @else {{ asset('images/user.png') }} @endif" alt="mdo" width="32" height="32" class="rounded-circle">
                             {{ Auth::user()->name }}
                             @if (Auth::user()->is_admin)
                                 <i class="bi bi-person-fill-gear"></i>

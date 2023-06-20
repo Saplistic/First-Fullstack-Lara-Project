@@ -36,7 +36,7 @@
 
                     <div class="avatar-container" style="margin: 20px; display: flex;">
                         <div class="profile-image-preview" style="margin-right: 20px;">
-                            <img id="preview" class="rounded-circle" src="@if ($user->profile_image_path != NULL && file_exists(public_path('images/' . $user->profile_image_path))) {{ asset('images/' . $user->profile_image_path) }} @else {{ asset('images/user.png') }} @endif">
+                            <img id="preview" class="rounded-circle" src="@if ($user->profile_image_path != NULL && file_exists(public_path('images/users/' . $user->profile_image_path))) {{ asset('images/users/' . $user->profile_image_path) }} @else {{ asset('images/user.png') }} @endif">
                         </div>
                         <div style="display: inline-block; flex-grow: 1;">
                             <h5>Bio</h5>
