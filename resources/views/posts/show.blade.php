@@ -4,15 +4,15 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h3>{{ $post->title }}</h3>
-                </div>
+            <div class="card overflow-hidden">
+
                 @if ( ($post->cover_image_path != NULL))
                     <div style="height: 100px; width: 100%; background: url({{ asset('images/post_covers/' . $post->cover_image_path) }}) center / cover"></div>
                 @endif
 
                 <div class="card-body">
+
+                    <h3>{{ $post->title }}</h3>
 
                     <small>
                         Gepost door 
@@ -37,10 +37,6 @@
                     @if($post->user_id == Auth::user()?->id)
                         <a href="{{ route('posts.edit', $post->id) }}" style="float: right">Edit</a>
                     @endauth
-                    
-                    {{-- @foreach ($post->likes as $like)
-                        <li>liked by user with id {{ $like->user_id }}</li>
-                    @endforeach --}}
                     
                     <p style="font-size: 1.3rem">
                         {{ $post->likes()->count() }}
