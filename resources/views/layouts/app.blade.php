@@ -19,6 +19,9 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <style>
+        main {
+            min-height: 75vh;
+        }
         a {
             text-decoration: none
         }
@@ -27,9 +30,12 @@
 <body>
     <div id="app">
         @include('partials.header')
+
         <main class="py-4">
             @yield('content')
         </main>
+
+        @include('partials.footer')
     </div>
 </body>
 </html>
