@@ -13,8 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    {{ __('You are logged in!') }}
+                    @auth
+                        {{ __('You are logged in!') }}
+                    @endauth
                 </div>
             </div>
         </div>
