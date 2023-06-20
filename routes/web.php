@@ -22,21 +22,21 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// user routes
+// user
 Route::get('/users/{username}', [UserController::class, 'profile'])->name('profile');
 Route::get('/settings/profile', [UserController::class, 'edit'])->name('user.edit');
 Route::put('/settings/profile/update', [UserController::class, 'update'])->name('user.update');
 Route::get('/users/{id}/grant-admin-permissions', [UserController::class, 'grantAdmin'])->name('grantAdminPermissions');
 
-// post routes
+// post
 Route::resource('/posts', PostController::class);
 
-// like routes
+// like
 Route::get('like/{postid}', [LikeController::class, 'like'])->name('like');
 
-// FAQ routes
+// FAQ
 Route::get('FAQ',   [FAQCategoryController::class, 'index'])->name('FAQs');
 Route::post('FAQ/category/store',   [FAQCategoryController::class, 'store'])->name('FAQs.category.store');
 Route::put('FAQ/category/update/{id}',   [FAQCategoryController::class, 'update'])->name('FAQs.category.update');
@@ -47,5 +47,10 @@ Route::post('FAQ/store/{category}', [FAQQuestionController::class, 'store'])->na
 Route::get('FAQ/edit/{id}', [FAQQuestionController::class, 'edit'])->name('FAQ.edit');
 Route::put('FAQ/update/{id}', [FAQQuestionController::class, 'update'])->name('FAQ.update');
 Route::get('FAQ/destroy/{id}', [FAQQuestionController::class, 'destroy'])->name('FAQ.destroy');
+
+// about
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
 
 Auth::routes();
