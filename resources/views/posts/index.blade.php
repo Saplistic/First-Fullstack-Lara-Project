@@ -24,16 +24,13 @@
                                 @if ($post->user->is_admin)
                                     <i class="bi bi-person-fill-gear"></i>
                                 @endif
-                            </a> op {{ $post->created_at->format('d/m/Y \o\m H:i') }}</small>
+                            </a> {{ $post->created_at->diffForHumans() }}
+                        </small>
                             
                         @if($post->user_id == Auth::user()?->id)
-                            <a href="{{ route('posts.edit', $post->id) }}" style="float: right;">Edit</a>
+                            <a href="{{ route('posts.edit', $post->id) }}" style="float: right;">Wijzig</a>
                         @endauth
                         <br>
-                        
-                        {{-- @foreach ($post->likes as $like)
-                            <li>liked by user with id {{ $like->user_id }}</li>
-                        @endforeach --}}
                         
                         <p style="font-size: 1.3rem">
                             {{ $post->likes()->count() }}
